@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+
 
 import 'dart:convert';
 
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff343541),
+      backgroundColor: const Color(0xff343541),
       appBar: AppBar(
         title: Text(
           "sfh",
@@ -77,6 +77,20 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+class ResponseModel {
+ 
+  final List<Map<String, dynamic>> choices;
+
+  ResponseModel({required this.choices});
+
+  factory ResponseModel.fromJson(String jsonString) {
+    final parsedJson = jsonDecode(jsonString);
+    return ResponseModel(choices: List<Map<String, dynamic>>.from(parsedJson['choices']));
+  
+}
+
+}
+
 class PromptBldr extends StatelessWidget {
   const PromptBldr({
     super.key,
@@ -88,14 +102,14 @@ class PromptBldr extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height / 1.35,
-      color: Color(0xff434654),
+      color: const Color(0xff434654),
       child: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding:const  EdgeInsets.all(20.0),
         child: SingleChildScrollView(
           child: Text(
             responseTxt,
             textAlign: TextAlign.start,
-            style: TextStyle(fontSize: 25, color: Colors.white),
+            style: const TextStyle(fontSize: 25, color: Colors.white),
           ),
         ),
       ),
